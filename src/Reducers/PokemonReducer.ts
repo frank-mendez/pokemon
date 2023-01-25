@@ -1,10 +1,22 @@
-import { PokemonTable } from './../Model/PokemonModel'
+import { PokemonDispatchType } from '../Api/Types'
+import { PokemonTableResult } from './../Model/PokemonModel'
 
-const initialState: PokemonTable = {
-	count: 0,
-	next: null,
-	previous: null,
-	results: [],
+const initialState: any = {
+	pokemon: {},
+	pokemonResult: {} as PokemonTableResult,
 }
 
-const pokemon = (state: any = initialState, action: any) => {}
+const pokemonReducer = (state: any = initialState, action: any) => {
+	const { type, payload } = action
+	switch (type) {
+		case PokemonDispatchType.FETCH_POKEMON_SUCCESS:
+			return {
+				...state,
+				pokemonResult: payload,
+			}
+		default:
+			return state
+	}
+}
+
+export default pokemonReducer

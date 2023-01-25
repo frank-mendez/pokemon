@@ -1,11 +1,11 @@
-export type PokemonTable = {
+export type PokemonTableResult = {
 	count: number
 	next: string | null
 	previous: string | null
-	results: PokemonTableResults[]
+	results: PokemoResults[]
 }
 
-type PokemonTableResults = {
+type PokemoResults = {
 	name: string
 	url: string
 }
