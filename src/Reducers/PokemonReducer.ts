@@ -1,22 +1,16 @@
-import { PokemonDispatchType } from '../Api/Types'
-import { PokemonTableResult } from './../Model/PokemonModel'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const initialState: any = {
-	pokemon: {},
-	pokemonResult: {} as PokemonTableResult,
-}
+export const pokemonApi = createApi({
+	reducerPath: 'pokemonApi',
+	baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2' }),
+	endpoints: (builder) => ({
+		getPokemonByName: builder.query({
+			query: (name: string) => `pokemon/${name}`,
+		}),
+		getPokemon: builder.query({
+			query: () => `pokemon?limit=20`,
+		}),
+	}),
+})
 
-const pokemonReducer = (state: any = initialState, action: any) => {
-	const { type, payload } = action
-	switch (type) {
-		case PokemonDispatchType.FETCH_POKEMON_SUCCESS:
-			return {
-				...state,
-				pokemonResult: payload,
-			}
-		default:
-			return state
-	}
-}
-
-export default pokemonReducer
+export const { useGetPokemonByNameQuery, useGetPokemonQuery } = pokemonApi

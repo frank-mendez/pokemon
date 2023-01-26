@@ -7,7 +7,7 @@ import MainRoutes from './Routes/MainRoutes'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles'
 import { Provider } from 'react-redux'
-import store from './Utilities/Store'
+import { store } from './Utilities/Store'
 import pokemonTheme from './Utilities/Themes'
 
 function App() {
